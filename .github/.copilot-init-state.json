@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastRun": "2026-04-17T19:39:22.942Z",
+  "lastRun": "2026-04-17T21:01:12.501Z",
   "detectedStack": {
     "languages": ["markdown", "powershell", "bash", "json"],
     "frameworks": [],
@@ -13,7 +13,9 @@
     ".github/instructions/markdown.instructions.md",
     ".github/instructions/scripts.instructions.md",
     ".github/instructions/agents.instructions.md",
+    ".github/instructions/hooks.instructions.md",
     ".github/agents/docs-writer.agent.md",
-    ".github/agents/code-reviewer.agent.md"
+    ".github/agents/code-reviewer.agent.md",
+    ".github/hooks/session-logger.json"
   ]
 }
