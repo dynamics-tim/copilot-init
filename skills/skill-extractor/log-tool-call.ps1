@@ -10,7 +10,7 @@
 
 $ErrorActionPreference = "SilentlyContinue"
 
-$LogDir = if ($env:COPILOT_WORKSPACE) { Join-Path $env:COPILOT_WORKSPACE ".copilot" } else { Join-Path (Get-Location).Path ".copilot" }
+$LogDir = Join-Path (Get-Location).Path ".copilot"
 $LogFile = Join-Path $LogDir "session-activity.jsonl"
 
 # Ensure log directory exists

@@ -117,6 +117,9 @@ The **skill-extractor** analyzes your Copilot session activity to find repeatabl
 # Copy the session-logger hook to your project
 cp references/hooks/session-logger.json YOUR_PROJECT/.github/hooks/
 
+# Add .copilot/ to .gitignore (session logs are ephemeral)
+echo '.copilot/' >> YOUR_PROJECT/.gitignore
+
 # After a few sessions, invoke the skill extractor
 @skill-extractor review last session
 ```

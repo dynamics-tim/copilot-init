@@ -11,11 +11,10 @@ set -euo pipefail
 # Environment variables (provided by Copilot hooks):
 #   COPILOT_TOOL_NAME      — name of the tool that was called
 #   COPILOT_TOOL_ARGS      — JSON string of tool arguments
-#   COPILOT_WORKSPACE      — workspace root path
 
 stderr() { echo "$@" >&2; }
 
-LOG_DIR="${COPILOT_WORKSPACE:-.}/.copilot"
+LOG_DIR=".copilot"
 LOG_FILE="$LOG_DIR/session-activity.jsonl"
 
 # Ensure log directory exists
