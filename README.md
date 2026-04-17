@@ -6,17 +6,27 @@
 
 ## Quick Start
 
-```bash
-# 1. Copy the agent into your project
-mkdir -p YOUR_PROJECT/.github/agents
-cp agents/copilot-init.agent.md YOUR_PROJECT/.github/agents/
+### Option 1: Plugin Install (Recommended)
 
-# 2. Open your project in VS Code / Copilot CLI and invoke it
+```bash
+# One command — works in Copilot CLI and VS Code
+copilot plugin install dynamics-tim/copilot-init
+
+# Then open any project and invoke it
 @copilot-init
 ```
 
-> **Note:** The agent needs access to the `references/` folder to generate high-quality output.
-> For best results, clone this repo and copy both `agents/` and `references/` into your project's `.github/` directory, or reference them from a central location.
+### Option 2: Manual Copy
+
+```bash
+# Clone and copy files into your project
+git clone https://github.com/dynamics-tim/copilot-init.git /tmp/copilot-init
+mkdir -p YOUR_PROJECT/.github/agents
+cp /tmp/copilot-init/agents/copilot-init.agent.md YOUR_PROJECT/.github/agents/
+```
+
+> **Note:** The manual approach requires copying `references/` too for best-quality output.
+> The plugin install handles this automatically.
 
 ## What It Does
 
@@ -46,6 +56,7 @@ See [PLAN.md](PLAN.md) for the full architecture and design decisions.
 
 ```
 copilot-init/
+├── plugin.json                     # Plugin manifest for one-command install
 ├── agents/
 │   └── copilot-init.agent.md       # The core agent (entire workflow)
 ├── skills/
@@ -76,9 +87,9 @@ copilot-init/
 
 ## Roadmap
 
-- **v1 (current):** Agent + scan helpers + reference examples. Generates instructions and agents.
-- **v2:** Plugin packaging (`plugin.json`) for one-command install via `/plugin install`.
-- **v3:** Hooks generation, MCP config scaffolding, deep code pattern analysis, profiles.
+- **v1 (current):** Agent + scan helpers + reference examples + plugin install.
+- **v2:** Awesome-copilot marketplace listing, hooks generation, MCP config scaffolding.
+- **v3:** Deep code pattern analysis, profiles, team-sharing workflows.
 
 ## Contributing
 
