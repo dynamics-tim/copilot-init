@@ -20,6 +20,7 @@ if (-not (Test-Path $LogDir)) {
 
 $ToolName = if ($env:COPILOT_TOOL_NAME) { $env:COPILOT_TOOL_NAME } else { "unknown" }
 $ToolArgs = if ($env:COPILOT_TOOL_ARGS) { $env:COPILOT_TOOL_ARGS } else { "{}" }
+$SkillName = if ($env:COPILOT_SKILL_NAME) { $env:COPILOT_SKILL_NAME } else { "" }
 $Timestamp = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
 
 # Extract file path from common tool arg patterns
@@ -56,6 +57,10 @@ function ConvertTo-JsonString {
 $EscapedPath = ConvertTo-JsonString -Value $FilePath
 $EscapedSummary = ConvertTo-JsonString -Value $ArgsSummary
 
+# Build optional skill field
+$skillPart = ""
+if ($SkillName) { $skillPart = ",`"skill`":`"$(ConvertTo-JsonString -Value $SkillName)`"" }
+
 # Append JSONL entry
-$entry = "{`"ts`":`"$Timestamp`",`"tool`":`"$ToolName`",`"path`":`"$EscapedPath`",`"args_summary`":`"$EscapedSummary`"}"
+$entry = "{`"ts`":`"$Timestamp`",`"tool`":`"$ToolName`",`"path`":`"$EscapedPath`",`"args_summary`":`"$EscapedSummary`"$skillPart}"
 Add-Content -Path $LogFile -Value $entry -Encoding UTF8
