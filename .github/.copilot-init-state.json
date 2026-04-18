@@ -1,6 +1,7 @@
 {
   "version": "1.0.0",
-  "lastRun": "2026-04-17T21:01:12.501Z",
+  "lastRun": "2026-04-18T18:27:00.000Z",
+  "reminderDaysThreshold": 30,
   "detectedStack": {
     "languages": ["markdown", "powershell", "bash", "json"],
     "frameworks": [],

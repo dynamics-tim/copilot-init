@@ -29,7 +29,7 @@ applyTo: "references/hooks/**/*.json, .github/hooks/**/*.json"
 
 - Use JSONL (one JSON object per line) for log files — append-only, no race conditions.
 - Store ephemeral data in `.copilot/` (add to `.gitignore`).
-- Use `$COPILOT_TOOL_NAME` and `$COPILOT_TOOL_ARGS` env vars in postToolUse hooks.
+- Use `$COPILOT_TOOL_NAME`, `$COPILOT_TOOL_ARGS`, and `$COPILOT_SKILL_NAME` env vars in postToolUse hooks.
 - Add `_comment` field for human-readable documentation inside JSON configs.
 
 <!-- end-managed-by: copilot-init -->

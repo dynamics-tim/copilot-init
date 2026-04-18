@@ -102,15 +102,17 @@ copilot-init/
 - **v2 (in progress):** Session-based skill extraction, hooks generation, MCP config scaffolding.
 - **v3:** Profiles, team-sharing workflows, awesome-copilot marketplace listing.
 
-## Skill Extraction (v2)
+## Skill Lifecycle (v2)
 
-The **skill-extractor** analyzes your Copilot session activity to find repeatable patterns and generates reusable skills from them automatically.
+The **skill-extractor** manages the full skill lifecycle: extract repeatable patterns from sessions, evaluate existing skills against real usage, improve underperforming skills, and clean up stale ones.
 
 ### How it works
 
 1. **Hooks log tool calls** — A `postToolUse` hook appends each tool call to `.copilot/session-activity.jsonl`
 2. **Agent analyzes patterns** — The `@skill-extractor` agent reads the log and identifies repeated multi-step workflows
 3. **You confirm & save** — Detected patterns are presented for approval, then generated as `.github/skills/` definitions
+4. **Evaluate & improve** — Existing skills are scored against actual usage data for trigger accuracy, workflow drift, and staleness
+5. **Clean up** — Unused or stale skills are archived to keep your configuration lean
 
 ### Quick setup
 
@@ -123,6 +125,14 @@ echo '.copilot/' >> YOUR_PROJECT/.gitignore
 
 # After a few sessions, invoke the skill extractor
 @skill-extractor review last session
+```
+
+```bash
+# Evaluate and improve existing skills
+@skill-extractor evaluate skills
+
+# Clean up stale or unused skills
+@skill-extractor clean up skills
 ```
 
 See `skills/skill-extractor/SKILL.md` for the full workflow and pattern detection heuristics.

@@ -13,7 +13,7 @@ agents/
 skills/
   copilot-init-scan/            — Optional fast-scan helper (scan.sh + scan.ps1)
   copilot-init-deep-scan/       — On-demand code pattern analysis skill
-  skill-extractor/              — Session pattern heuristics + rich logging scripts
+  skill-extractor/              — Session pattern heuristics, evaluation heuristics + rich logging scripts
 references/                     — Working example files the LLM reads and adapts
   copilot-instructions/         — Per-stack instruction examples
   path-instructions/            — Path-specific instruction examples
@@ -28,7 +28,7 @@ plugin.json                     — Plugin manifest for `copilot plugin install`
 ## Key Design Principles
 
 - **Agent-first:** The agent IS the workflow. Skills are optional context injections, not orchestration steps.
-- **Two-part skill extraction:** Hooks can't invoke LLMs — so hooks log data (fast, <1ms) and agents analyze patterns (intelligent, interactive). The sessionEnd → sessionStart handoff uses a marker file.
+- **Two-part skill lifecycle:** Hooks can't invoke LLMs — so hooks log data (fast, <1ms) and agents analyze patterns (intelligent, interactive). The sessionEnd → sessionStart handoff uses a marker file. The skill-extractor manages the full lifecycle: extract → evaluate → improve → clean up.
 - **Native tools preferred:** The agent uses Copilot's native tools (glob, read, search, create, edit) for scanning — scripts are optional accelerators.
 
 ## Conventions
