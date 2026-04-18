@@ -43,6 +43,7 @@ cp /tmp/copilot-init/agents/copilot-init.agent.md YOUR_PROJECT/.github/agents/
 | `.github/instructions/*.instructions.md` | Language/path-specific rules (e.g., React components, API routes) |
 | `.github/agents/*.agent.md` | Custom agent profiles (e.g., code reviewer, test specialist) |
 | `.github/.copilot-init-state.json` | State tracking for idempotent re-runs |
+| `.github/hooks/config-freshness.json` | Session-start hook that reminds you when config needs updating |
 
 ## How It Works
 
@@ -125,6 +126,16 @@ echo '.copilot/' >> YOUR_PROJECT/.gitignore
 ```
 
 See `skills/skill-extractor/SKILL.md` for the full workflow and pattern detection heuristics.
+
+## Config Maintenance
+
+copilot-init can install a lightweight **config freshness hook** that checks at each session start whether your Copilot configuration might be out of date. If your config is older than 30 days (configurable), you'll see a one-line reminder:
+
+```
+[copilot-init] Config is 34 days old — run @copilot-init to update.
+```
+
+The hook is opt-in (offered during setup with `default: true`), non-blocking, and benefits all team members once committed.
 
 ## Contributing
 
